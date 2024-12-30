@@ -2,34 +2,27 @@ class Book:
     """Базовый класс книги."""
 
     def __init__(self, name: str, author: str):
-        self.name = name
-        self.author = author
+        if not isinstance(name, str):
+            raise TypeError("Имя книги должно быть строкой.")
+        if not isinstance(author, str):
+            raise TypeError("Имя автора должно быть строкой.")
+        self._name = name
+        self._author = author
 
-    def __str__(self):
-        return f"Книга {self.name}. Автор {self.author}"
+    def __str__(self) -> str:
+        return f"Книга '{self._name}'. Автор: {self._author}"
 
-    def __repr__(self):
-        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r})"
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(name={self._name!r}, author={self._author!r})"
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self._name
 
-    @name.setter
-    def name(self, value):
-        if not isinstance(value, str):
-            raise TypeError("Название книги должно быть строкой.")
-        self._name = value
-
     @property
-    def author(self):
+    def author(self) -> str:
         return self._author
 
-    @author.setter
-    def author(self, value):
-        if not isinstance(value, str):
-            raise TypeError("Имя автора должно быть строкой.")
-        self._author = value
 
 
 class PaperBook(Book):
