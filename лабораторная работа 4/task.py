@@ -95,4 +95,5 @@ class Circle(GeometricFigure):
         """
         Перегруженный метод describe для предоставления более подробного описания круга.
         """
-        return f"Это круг под названием {self.name}, радиусом {self._radius} и цветом {self._color}."
+        base_description = super().describe()  # вызов метода родительского класса
+        return f"{base_description} Он имеет радиус {self._radius} и материал {self.__material}."
