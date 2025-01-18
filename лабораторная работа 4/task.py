@@ -90,10 +90,3 @@ class Circle(GeometricFigure):
         Вычисляет длину окружности.
         """
         return 2 * math.pi * self._radius
-
-    def describe(self) -> str:
-        """
-        Перегруженный метод describe для предоставления более подробного описания круга.
-        """
-        base_description = super().describe()  # вызов метода родительского класса
-        return f"{base_description} Он имеет радиус {self._radius} и материал {self.__material}."
