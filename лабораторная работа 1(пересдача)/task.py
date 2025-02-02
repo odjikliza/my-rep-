@@ -14,17 +14,17 @@ class Car:
         self.model = model
         self.year = year
 
-    def get_age(self) -> int:
+   def get_age(self, current_year: int) -> int:
         """
         Вычисляет возраст автомобиля.
 
+        :param current_year: Текущий год для расчета возраста.
         :return: Возраст автомобиля в годах.
+
         >>> car = Car("Toyota", "Camry", 2015)
-        >>> car.get_age()
+        >>> car.get_age(2023)
         8
         """
-        from datetime import datetime
-        current_year = datetime.now().year
         return current_year - self.year
 
     def update_model(self, new_model: str) -> None:
@@ -34,6 +34,18 @@ class Car:
         :param new_model: Новая модель автомобиля.
         """
         self.model = new_model
+
+
+# Пример использования
+if __name__ == "__main__":
+    car = Car("Toyota", "Camry", 2015)
+    print(f"Возраст автомобиля в 2023 году: {car.get_age(2023)} лет.")  # Возраст автомобиля: 8 лет.
+
+    car2 = Car("Honda", "Civic", 2020)
+    print(f"Возраст второго автомобиля в 2025 году: {car2.get_age(2025)} лет.")  # Возраст второго автомобиля: 5 лет.
+
+    car.update_model("Camry Hybrid")
+    print(f"Обновленная модель: {car.model}.")  # Обновленная модель: Camry Hybrid.
 
 
 class Book:
@@ -122,3 +134,10 @@ class BankAccount:
         150.0
         """
         if amount <= 0:
+             raise ValueError("Сумма для снятия должна быть положительной.")
+        if amount > self.balance:
+            raise ValueError("Недостаточно средств на счете.")
+
+        self.balance -= amount
+        return self.balance
+        
